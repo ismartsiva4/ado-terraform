@@ -19,7 +19,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(Build.SourcesDirectory)'
+    workingDirectory: '$(Build.SourcesDirectory)/linux'
     backendServiceArm: 'azure-connection'
     backendAzureRmResourceGroupName: 'terraform'
     backendAzureRmStorageAccountName: 'terraformtxtx'
@@ -31,7 +31,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'validate'
-    workingDirectory: '$(Build.SourcesDirectory)'
+    workingDirectory: '$(Build.SourcesDirectory)/linux'
     environmentServiceNameAzureRM: 'azure-connection'
 
 - task: TerraformTaskV2@2
@@ -39,7 +39,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'plan'
-    workingDirectory: '$(Build.SourcesDirectory)'
+    workingDirectory: '$(Build.SourcesDirectory)/linux'
     environmentServiceNameAzureRM: 'azure-connection'
     commandOptions: '-out=tfplan'
 
@@ -48,6 +48,6 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: '$(Build.SourcesDirectory)'
+    workingDirectory: '$(Build.SourcesDirectory)/linux'
     environmentServiceNameAzureRM: 'azure-connection'
     commandOptions: '-auto-approve -input=false tfplan'
